@@ -34,5 +34,5 @@ echo ""
 # 10 largest regular files sorted by their sizes
 echo "10 largest regular files in the system, sorted by their sizes"
 echo "============================================================="
-find / -type f -exec ls -l --block-size=MB {} + 2>/dev/null | sort -k5 -r | head -n 10 | awk '{print $3, $5, $9}'
+find / -type f -exec ls -l --block-size=MB {} + 2>/dev/null | sort -k5 -hr | head -n 10 | awk '{print $3, $5, $9}'
 echo ""
