@@ -13,23 +13,23 @@
 # make a Pictures directory if we don't have one - assumes we have a home directory
 test -d ~/Pictures || mkdir ~/Pictures
 
-###########################################################################################
+########################### Download zip file and tar file ################################
 
 # download a zipfile of pictures to our Pictures directory if it isn't already there - assumes you are online
 test -f ~/Pictures/pics.zip || wget -q -O ~/Pictures/pics.zip http://zonzorp.net/pics.zip
 
-#download the tar file of pictures to our Pictures directory
+# download the tar file of pictures to our Pictures directory
 test -f ~/Pictures/pics.tgz || wget -q -O ~/Pictures/pics.tgz https://zonzorp.net/pics.tgz
 
-###########################################################################################
+########################### Unzip zip file and tar file ####################################
 
 # unpack the downloaded zipfile if it is there, then delete the local copy of the zipfile
 test -f ~/Pictures/pics.zip && unzip -d ~/Pictures -o -q ~/Pictures/pics.zip && rm ~/Pictures/pics.zip
 
-# unzip the tar file to our Pictures directory and delete the local copy of tar file
+# unpack the tar file to our Pictures directory and delete the local copy of tar file
 test -f ~/Pictures/pics.tgz && tar -C ~/Pictures -zxf  ~/Pictures/pics.tgz && rm ~/Pictures/pics.tgz
 
-############################################################################################
+########################### Report of Pictures directory ###################################
 
 # Make a report on what we have in the Pictures directory
 test -d ~/Pictures && cat <<EOF
