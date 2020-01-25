@@ -25,11 +25,11 @@ range=6
 bias=1
 
 # Rolling dice 2 times
-die1=$(( RANDOM % $range + $bias ))
-die2=$(( RANDOM % $range + $bias ))
+die1=$(( RANDOM % range + bias ))
+die2=$(( RANDOM % range + bias ))
 
 # finding the sum of die1 and die2
-sum=$(($die1 + $die2))
+sum=$((die1 + die2))
 
 # finding the average of die1 and die2
 average=$((sum / 2))
