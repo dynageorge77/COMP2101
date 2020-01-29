@@ -17,7 +17,7 @@
 ##############################################
 #                  Variables                 #
 ##############################################
-title="Overlord"
+#title="Overlord"
 
 echo "Enter your name:"
 read USER
@@ -42,30 +42,30 @@ date=$(date +"%I:%M:%S %p")
 
 if [ $day == "Monday" ]
 then
-  echo "Monday might be Busy"
+  title="Monday might be Busy"
 
 elif [ $day == "Tuesday"  ]
 then
-  echo "Tuesday might be Ok"
+  title="Tuesday might be Ok"
 
 elif [ $day == "Wednesday" ]
 then
-  echo "Wednesday might be Good"
+  title="Wednesday might be Good"
 
 elif [ $day == "Thursday" ]
 then
-  echo "Thursday might be Lucky"
+  title="Thursday might be Lucky"
 
 elif [ $day == "Friday" ]
 then
-  echo "Friday is Weekend"
+  title="Friday is Weekend"
 
 elif [ $day == "Saturday" ]
 then
-  echo "Saturday is Sleepy"
+  title="Saturday is Sleepy"
 
 else
-  echo "Sunday is Free"
+  title="Sunday is Free"
 
 fi
 
