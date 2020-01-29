@@ -19,7 +19,8 @@ echo "Enter third number"
 read thirdnum
 #############################################################
 
-# Perform calculations
+# Perform arithmetic calculations
+
 sum=$((firstnum + secondnum + thirdnum))
 
 product=$((firstnum * secondnum * thirdnum))
