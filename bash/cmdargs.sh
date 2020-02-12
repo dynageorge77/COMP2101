@@ -5,6 +5,7 @@
 myargs=()
 # loop through the command line arguments
 while [ $# -gt 0 ]; do
+
   # tell the user how many things are left on the command line
 
   # TASK 1: instead of just adding arguments to an array, use a case statement to recognize some options
@@ -16,27 +17,27 @@ while [ $# -gt 0 ]; do
   #          Anything that wasn't recognized on the command line should still go into the myargs array
   echo "There are $# things left to process on the command line."
   # add whatever is in $1 to the myargs array
-  #myargs+=("$1")
+  myargs+=("$1")
   # tell the user what we did
   echo "Added \'$1\' to the arguments array"
 
   case $1 in
     -h )
-    echo 'You added "-h" for help'
+    echo "-h for help"
     ;;
     -v )
-    echo 'You added "-v" for verbose'
+    echo "-v for verbose"
     ;;
 
     -d )
       case "$2" in
         [1-5] )
-        echo "You added -d for debug level $2"
+        echo "-d for debug level $2"
         shift
         ;;
         *)
-        echo "The -d option must be followed with a number[1-5]."
-        shift
+          echo "-d option is followed with a number[1-5]."
+          shift
       esac
     ;;
     *)
