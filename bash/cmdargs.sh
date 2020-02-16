@@ -3,8 +3,16 @@
 
 # create an empty array to put the command line arguments into
 myargs=()
+test1=0
+test2=0
 # loop through the command line arguments
 while [ $# -gt 0 ]; do
+
+  echo "There are $# things left to process on the command line."
+  # add whatever is in $1 to the myargs array
+  myargs+=("$1")
+  # tell the user what we did
+  echo "Added \'$1\' to the arguments array"
 
   # tell the user how many things are left on the command line
 
@@ -15,11 +23,6 @@ while [ $# -gt 0 ]; do
   #          If the debug optionis recognized, set a variable with the debug level from the number given after the -d on the command line
   #             display an error if the user gave the -d option without a single digit number after it
   #          Anything that wasn't recognized on the command line should still go into the myargs array
-  echo "There are $# things left to process on the command line."
-  # add whatever is in $1 to the myargs array
-  myargs+=("$1")
-  # tell the user what we did
-  echo "Added \'$1\' to the arguments array"
 
   case $1 in
     -h )
@@ -27,12 +30,14 @@ while [ $# -gt 0 ]; do
     ;;
     -v )
     echo "-v for verbose"
+    test1=1
     ;;
 
     -d )
       case "$2" in
         [1-5] )
         echo "-d for debug level $2"
+        test2=$2
         shift
         ;;
         *)
@@ -43,6 +48,7 @@ while [ $# -gt 0 ]; do
     *)
     error=$1
     echo "Invalid value $error"
+    shift
     ;;
     esac
 
@@ -61,3 +67,19 @@ echo "Done"
 #         Tell the user if vebose mode is on
 #         Tell the user if debug mode is on and if it is, what number it is set to
 #         Print out the myargs array with a label
+
+if [ $test1 = 1 ]
+then
+  echo "verbose mode ON"
+
+else
+  echo "verbose mode OFF"
+fi
+
+if [ $test2 -gt 0 ]
+then
+  echo "debug mode ON"
+
+else
+  echo "debug mode OFF"
+fi
