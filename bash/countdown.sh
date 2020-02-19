@@ -44,20 +44,22 @@ EOF
 # interrupt function
 function interrupt {
   sleepCount=$numberOfSleeps
-
+  echo "You are not allowed to interrupt the count!!!"
 }
 
 # Quit function
 function quit {
 
+  stty sane
   sleepCount=0
+  echo "You find the secret to get out of the count... You are quitting immediately"
   exit 0
-  echo "The Script is Terminated"
+
 }
 
 # Normally traps catch signals and do something useful or necessary with them
-trap interrupt SIGINT
-trap quit SIGQUIT
+trap interrupt INT
+trap quit QUIT
 # Produce the numbers for the countdown
 function doCountdown {
 while [ $sleepCount -gt 0 ]; do
