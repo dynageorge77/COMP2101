@@ -1,5 +1,4 @@
 ﻿"############## System Hardware Description ###############"
-
 gwmi win32_computersystem 
 
 "########### Operating system name and version number ###########"
@@ -9,23 +8,38 @@ gwmi win32_operatingsystem |
 
 "########### Processor description with speed, number of core, and sizes of L1, L2 and L3 cache ##########"
 ""
+<<<<<<< HEAD
 gwmi win32_processor |   
     select-object @{n='Processor Type'; e={$_.caption}}, Name,      
         @{n="MaxClockSpeed in GHz"; e={$_.MaxClockSpeed/1000}}, NumberOfCores,        
         @{n="L1 Cache Size"; e={switch($_.L1CacheSize){$null{$stat="NA"} 0{$stat="0"}}; $stat}},      
         @{n="L2 Cache Size"; e={switch($_.L2CacheSize){$null{$stat="NA"} 0{$stat="0"}}; $stat}},      
+=======
+gwmi win32_processor |    
+    select-object @{n='Processor Type'; e={$_.caption}}, Name,     
+        @{n="MaxClockSpeed in GHz"; e={$_.MaxClockSpeed/1000}}, NumberOfCores,       
+        @{n="L1 Cache Size"; e={switch($_.L1CacheSize){$null{$stat="NA"} 0{$stat="0"}}; $stat}},      
+        @{n="L2 Cache Size"; e={switch($_.L2CacheSize){$null{$stat="NA"} 0{$stat="0"}}; $stat}},     
+>>>>>>> f7ab232132aaebc68e48dfc968a4df0cdbdcf0cd
         @{n="L3 Cache Size"; e={switch($_.L3CacheSize){$null{$stat="NA"} 0{$stat="0"}}; $stat}}
 
 "########### Summary of RAM installed with the vendor, description, size, bank and slot for each DIMM ###########"
-
 $storagecapacity = 0
 gwmi -class win32_physicalmemory | 
     foreach {
+<<<<<<< HEAD
         new-object -TypeName psobject -Property @{
         Vendor =$_.manufacturer
         Description = $_.description     
         #"Speed in MHz" =$_.speed                                                          
         "Size in GB" = $_.capacity/1gb                                  
+=======
+        new-object -TypeName psobject -Property @{  
+        Vendor =$_.manufacture
+        Description = $_.description       
+        #"Speed in MHz" =$_.speed                                                          
+        "Size in GB" = $_.capacity/1gb                                
+>>>>>>> f7ab232132aaebc68e48dfc968a4df0cdbdcf0cd
         Bank = $_.banklabel                              
         Slot = $_.devicelocator                  
     }                 
@@ -34,7 +48,6 @@ $storagecapacity += $_.capacity/1gb} |
 "Total RAM is ${storagecapacity} GB"
 
 "########## Physical Disk Drives with vendor, model, size and space usage ##########"
-
 $disks=Get-WmiObject -class  win32_logicaldisk |  where-object size -gt 0 
 $diskConfig=foreach ($disk in $disks) {
 $part = $disk.GetRelated('win32_diskpartition')
@@ -52,7 +65,6 @@ $part = $disk.GetRelated('win32_diskpartition')
 $diskConfig | Format-Table -AutoSize Disk, Vendor, Model,"Size(GB)","Free space(GB)","% Free"
 
 "########### Video card vendor, description, and current screen resolution ###########"
-
 gwmi win32_videocontroller | 
     format-list @{n="Video Card Vendor"; e={$_.AdapterCompatibility}}, Description,
     @{n="Current Screen Resolution"; e={$_.VideoModeDescription}}
